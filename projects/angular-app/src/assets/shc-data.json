@@ -1,0 +1,102 @@
+{
+  "response": {
+    "data": [
+      {
+        "code": "AVI",
+        "description": "Live Animals"
+      },
+      {
+        "code": "HUM",
+        "description": "Human Remains"
+      },
+      {
+        "code": "ATC",
+        "description": "Active Temperature Controller"
+      },
+      {
+        "code": "PER",
+        "description": "Perishable Cargo"
+      },
+      {
+        "code": "PEP",
+        "description": "Fruits or Vegetables"
+      },
+      {
+        "code": "RCM",
+        "description": "Corrosive"
+      },
+      {
+        "code": "PEM",
+        "description": "Meat"
+      },
+      {
+        "code": "PEF",
+        "description": "Flowers"
+      },
+      {
+        "code": "EAT",
+        "description": "Food Stuff"
+      },
+      {
+        "code": "FUN",
+        "description": "Security Checked"
+      },
+      {
+        "code": "RPB",
+        "description": "Milk for Babies"
+      },
+      {
+        "code": "VAL",
+        "description": "Other"
+      },
+      {
+        "code": "AVI",
+        "description": "Live Horses, Asses, Mules"
+      },
+      {
+        "code": "HUM",
+        "description": "Live Bovine animals"
+      },
+      {
+        "code": "ACT",
+        "description": "Live Sheep and Goats"
+      },
+      {
+        "code": "PER",
+        "description": "Fresh or Chilled"
+      },
+      {
+        "code": "PEP",
+        "description": "Milk for Babies"
+      },
+      {
+        "code": "RCM",
+        "description": "Other"
+      },
+      {
+        "code": "PEM",
+        "description": "Live Horses, Asses, Mules"
+      },
+      {
+        "code": "PEF",
+        "description": "Live Bovine animals"
+      },
+      {
+        "code": "EAT",
+        "description": "Live Sheep and Goats"
+      },
+      {
+        "code": "FUN",
+        "description": "Fresh or Chilled"
+      },
+      {
+        "code": "RPB",
+        "description": "Milk for Babies"
+      },
+      {
+        "code": "VAL",
+        "description": "Other"
+      }
+    ]
+  }
+}

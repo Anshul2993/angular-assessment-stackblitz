@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+:host {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+@mixin button-color($color) {
+  color: $color;
+}
+// @mixin button-width($width) {
+//   width: $width;
+// }
+@mixin button-background-color($color) {
+  background-color: $color;
+}
+@mixin button($color, $background-color) {
+  @extend .button-basics;
+  @include button-color($color);
+  //@include button-width($width);
+  @include button-background-color($background-color);
+}
+.button-basics {
+  border: none;
+  padding: 15px 30px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+button {
+  @include button(white, dodgerblue);
+}
+p {
+  margin: 0;
+}
+h1 {
+  text-align: center;
+}
+h3 {
+  margin: 0;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 6px 15px;
+  padding-left: 25px;
+  line-height: 1.42857143;
+  color: #555;
+  outline: none;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s,
+    -webkit-box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
