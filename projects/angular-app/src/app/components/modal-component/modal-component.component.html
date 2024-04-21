@@ -1,0 +1,65 @@
+<div *ngIf="visible">
+  <div class="modal-overlay" (click)="closeModal()"></div>
+  <div
+    class="modal"
+    [ngStyle]="{
+      'width.px': selectedTable.width,
+      'height.px': selectedTable.height
+    }"
+    [ngClass]="selectedTable.modalClass"
+  >
+    <div class="modal-header" [ngStyle]="{
+      'color': modalProperties.header.color,
+      'background-color': modalProperties.header.backgroundColor,
+      'padding': modalProperties.padding
+    }">
+      <h3>{{ selectedTable.title }}</h3>
+      <span class="close-btn" (click)="closeModal()"
+        ><i class="fa fa-close"></i
+      ></span>
+    </div>
+    <div class="modal-content" [style.color]="modalProperties.content.color" [style.padding]="modalProperties.padding">
+      <div class="search-bar" *ngIf="selectedTable.searchEnabled">
+        <i class="fa fa-search"></i>
+        <input
+          class="form-control"
+          type="text"
+          name="search"
+          autocomplete="off" [(ngModel)]="searchText"
+        />
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <input type="checkbox" value="checkAll" class="checkbox" [(ngModel)]="selectAll" (click)="checkAll()">
+            <th *ngFor="let column of selectedTable.columns" (click)="doSort(column)">
+              {{ column.title }}<i class="fa fa-arrow-up" *ngIf="column.sort.order == 'asc'"></i><i class="fa fa-arrow-down" *ngIf="column.sort.order == 'desc'"></i></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of tableData" [class.isChecked]="row.checked" (click)="check()">
+            <input type="checkbox" value="checkAll" class="checkbox" [(ngModel)]="row.checked">
+            <td *ngFor="let data of selectedTable.columns">
+              {{ row[formatKey(data.title)] }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div
+      class="modal-footer" [ngStyle]="{
+        'background-color': modalProperties.header.backgroundColor,
+        'padding': modalProperties.padding
+      }"
+      *ngIf="modalProperties.footer.modalButtons.length && selectedTable.footerButtons"
+    >
+      <button
+        *ngFor="let button of modalProperties.footer.modalButtons"
+        [style.background-color]="button.color"
+        (click)="handleButtonClick(button.text)"
+      >
+        {{ button.text }}
+      </button>
+    </div>
+  </div>
+</div>

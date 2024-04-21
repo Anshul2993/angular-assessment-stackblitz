@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { DataService } from '../services/dataService.service';
+import { DataService } from '../../services/dataService.service';
 
 export interface button {
   text: string;
@@ -13,9 +13,12 @@ export interface button {
 export class ModalComponent {
   @Input() visible: boolean = false;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Input() buttons: button[] = [];
   @Input() selectedTable: any;
+  @Input() modalProperties: any;
+  searchText: string = '';
+  sort: any = { order: 'asc', key: ''};
   tableData: any;
+  selectAll: boolean = false;
   constructor(private dataService: DataService) {}
 
   ngAfterViewInit() {
@@ -25,8 +28,15 @@ export class ModalComponent {
   getData() {
     this.dataService.CurrentTableData.subscribe((res: any) => {
       console.log(res);
-      this.tableData = res?.response.data;
+      this.tableData = res?.response?.data;
     });
+  }
+  getSortedAndFilteredData(column:any=null) {
+    const payload = {
+      'filter': this.searchText.toLowerCase(),
+      'sort': column.sort
+    }
+    this.dataService.getData(this.selectedTable.dataURL, payload);
   }
   formatKey(key: string) {
     return key.replace(/\s/g, '').toLowerCase();
@@ -40,5 +50,22 @@ export class ModalComponent {
     if (text.toLowerCase() == 'cancel') {
       this.closeModal();
     }
+    else {
+      this.getSortedAndFilteredData();
+    }
+  }
+  doSort(column:any) {
+    console.log(column);
+    column.sort.order = column.sort.order == 'asc' ? 'desc' : 'asc';
+    this.getSortedAndFilteredData(column);
+  }
+  checkAll() {
+    //const check = this.selectAll;
+    this.tableData.forEach((row:any) => {
+      row.checked = !this.selectAll
+    });
+  }
+  check() {
+    this.selectAll = this.tableData.every((row:any) => {row.checked = true});
   }
 }

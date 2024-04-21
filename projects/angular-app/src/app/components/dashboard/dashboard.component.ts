@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { URLConstants } from '../constant';
-import { DataService } from '../services/dataService.service';
+import { URLConstants } from '../../constant';
+import { DataService } from '../../services/dataService.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,29 +21,43 @@ export class DashboardComponent {
     dataURL: '',
   };
   modalVisible: boolean = false;
-
-  modalButtons = [
-    { text: 'Cancel', color: 'grey' },
-    { text: 'Apply', color: 'deepskyblue' },
-  ];
+  modalProperties = {
+    header: {
+      'backgroundColor': '#f0f0f0',
+      'color': '#000'
+    },
+    content: {
+      'color': 'grey'
+    },
+    footer: {
+      'backgroundColor': '#f0f0f0',
+      'modalButtons' : [
+        { text: 'Cancel', color: 'grey' },
+        { text: 'Apply', color: 'deepskyblue' },
+      ]
+    },
+    padding: "10px 20px",
+  }
+  
 
   modalTables = [
     {
       id: 1,
       title: 'Table Heading',
       searchEnabled: false,
-      width: 500,
+      width: 600,
       height: 350,
       columns: [
-        'Type',
-        'Flight',
-        'Transaction',
-        'Partner',
-        'Activity',
-        'Miles',
+        {title: 'Type', sort: {order: 'asc', key: 'type'}},
+        {title: 'Flight', sort: {order: 'asc', key: 'flight'}},
+        {title: 'Transaction', sort: {order: 'asc', key: 'transaction'}},
+        {title: 'Partner', sort: {order: 'asc', key: 'partner'}},
+        {title: 'Activity', sort: {order: 'asc', key: 'activity'}},
+        {title: 'Miles', sort: {order: 'asc', key: 'miles'}}
       ],
       checkboxes: true,
       footerButtons: false,
+      modalClass: 'table-heading',
       dataURL: URLConstants.TableHeading,
     },
     {
@@ -52,7 +66,10 @@ export class DashboardComponent {
       searchEnabled: true,
       width: 400,
       height: 300,
-      columns: ['Commodity Code', 'Commodity Description'],
+      columns: [
+        {title: 'Commodity Code', sort: {order: 'asc', key: 'commoditycode'}},
+        {title: 'Commodity Description', sort: {order: 'asc', key: 'commoditydescription'}}
+      ],
       checkboxes: true,
       footerButtons: true,
       modalClass: 'commodity-table',
@@ -64,7 +81,10 @@ export class DashboardComponent {
       searchEnabled: true,
       width: 300,
       height: 300,
-      columns: ['Code', 'Description'],
+      columns: [
+        {title: 'Code', sort: {order: 'asc', key: 'code'}},
+        {title: 'Description', sort: {order: 'asc', key: 'description'}}
+      ],
       checkboxes: true,
       footerButtons: true,
       modalClass: 'shc-table',
