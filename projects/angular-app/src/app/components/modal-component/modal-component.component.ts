@@ -34,7 +34,7 @@ export class ModalComponent {
   getSortedAndFilteredData(column:any=null) {
     const payload = {
       'filter': this.searchText.toLowerCase(),
-      'sort': column.sort
+      'sort': column?.sort
     }
     this.dataService.getData(this.selectedTable.dataURL, payload);
   }
